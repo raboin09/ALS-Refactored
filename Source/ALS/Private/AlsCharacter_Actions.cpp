@@ -451,7 +451,7 @@ void AAlsCharacter::StartMantlingImplementation(const FAlsMantlingParameters& Pa
 		return;
 	}
 
-	const auto* MantlingSettings{SelectMantlingSettings(Parameters.MantlingType)};
+	const auto* MantlingSettings{K2_SelectMantlingSettings(Parameters.MantlingType)};
 
 	if (!ALS_ENSURE(IsValid(MantlingSettings)) || !ALS_ENSURE(IsValid(MantlingSettings->Montage)))
 	{
@@ -526,13 +526,9 @@ void AAlsCharacter::StartMantlingImplementation(const FAlsMantlingParameters& Pa
 		SetLocomotionAction(AlsLocomotionActionTags::Mantling);
 	}
 
-	OnMantlingStarted(Parameters);
+	K2_OnMantlingStarted(Parameters);
 }
 
-UAlsMantlingSettings* AAlsCharacter::SelectMantlingSettings_Implementation(EAlsMantlingType MantlingType)
-{
-	return nullptr;
-}
 
 float AAlsCharacter::CalculateMantlingStartTime(const UAlsMantlingSettings* MantlingSettings, const float MantlingHeight) const
 {
@@ -594,8 +590,6 @@ float AAlsCharacter::CalculateMantlingStartTime(const UAlsMantlingSettings* Mant
 		}
 	}
 }
-
-void AAlsCharacter::OnMantlingStarted_Implementation(const FAlsMantlingParameters& Parameters) {}
 
 void AAlsCharacter::RefreshMantling()
 {
@@ -661,12 +655,10 @@ void AAlsCharacter::StopMantling(const bool bStopMontage)
 	AlsCharacterMovement->SetMovementModeLocked(false);
 	GetCharacterMovement()->SetMovementMode(MOVE_Walking);
 
-	OnMantlingEnded();
+	K2_OnMantlingEnded();
 
 	ForceNetUpdate();
 }
-
-void AAlsCharacter::OnMantlingEnded_Implementation() {}
 
 bool AAlsCharacter::IsRagdollingAllowedToStart() const
 {
@@ -780,10 +772,8 @@ void AAlsCharacter::StartRagdollingImplementation()
 		SetRagdollTargetLocation(GetMesh()->GetSocketLocation(UAlsConstants::PelvisBoneName()));
 	}
 
-	OnRagdollingStarted();
+	K2_OnRagdollingStarted();
 }
-
-void AAlsCharacter::OnRagdollingStarted_Implementation() {}
 
 void AAlsCharacter::SetRagdollTargetLocation(const FVector& NewTargetLocation)
 {
@@ -995,7 +985,7 @@ void AAlsCharacter::StopRagdollingImplementation()
 
 	SetLocomotionAction(FGameplayTag::EmptyTag);
 
-	OnRagdollingEnded();
+	K2_OnRagdollingEnded();
 
 	if (RagdollingState.bGrounded &&
 	    GetMesh()->GetAnimInstance()->Montage_Play(SelectGetUpMontage(RagdollingState.bFacedUpward), 1.0f,
@@ -1027,5 +1017,3 @@ UAnimMontage* AAlsCharacter::SelectGetUpMontage_Implementation(const bool bRagdo
 {
 	return bRagdollFacedUpward ? Settings->Ragdolling.GetUpBackMontage : Settings->Ragdolling.GetUpFrontMontage;
 }
-
-void AAlsCharacter::OnRagdollingEnded_Implementation() {}
