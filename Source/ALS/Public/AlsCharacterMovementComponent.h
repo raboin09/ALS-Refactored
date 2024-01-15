@@ -80,35 +80,35 @@ class ALS_API UAlsCharacterMovementComponent : public UCharacterMovementComponen
 protected:
 	FAlsCharacterNetworkMoveDataContainer MoveDataContainer;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State", Transient)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "CUSTOM|State", Transient)
 	TObjectPtr<UAlsMovementSettings> MovementSettings;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State", Transient)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "CUSTOM|State", Transient)
 	FAlsMovementGaitSettings GaitSettings;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State", Transient)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "CUSTOM|State", Transient)
 	FGameplayTag RotationMode{AlsRotationModeTags::ViewDirection};
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State", Transient)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "CUSTOM|State", Transient)
 	FGameplayTag Stance{AlsStanceTags::Standing};
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State", Transient)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "CUSTOM|State", Transient)
 	FGameplayTag MaxAllowedGait{AlsGaitTags::Walking};
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State", Transient)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "CUSTOM|State", Transient)
 	bool bMovementModeLocked;
 
 	// Valid only on locally controlled characters.
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State", Transient)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "CUSTOM|State", Transient)
 	FRotator PreviousControlRotation;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State", Transient)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "CUSTOM|State", Transient)
 	FVector PendingPenetrationAdjustment;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State", Transient)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "CUSTOM|State", Transient)
 	FVector PrePenetrationAdjustmentVelocity;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State", Transient)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "CUSTOM|State", Transient)
 	bool bPrePenetrationAdjustmentVelocityValid;
 
 public:
