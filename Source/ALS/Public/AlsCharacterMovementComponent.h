@@ -186,9 +186,14 @@ public:
 
 	void SetMaxAllowedGait(const FGameplayTag& NewMaxAllowedGait);
 
-private:
+	// JPR Made this capable of changing speed at runtime
+protected:
 	void RefreshMaxWalkSpeed();
 
+public:
+	float WalkSpeedModifierRatio = 1.f;
+	// End JPR
+	
 public:
 	float CalculateGaitAmount() const;
 

@@ -6,6 +6,7 @@
 #include "Curves/CurveVector.h"
 #include "Engine/World.h"
 #include "GameFramework/Controller.h"
+#include "Kismet/KismetSystemLibrary.h"
 #include "Utility/AlsMacros.h"
 #include "Utility/AlsUtility.h"
 
@@ -915,8 +916,9 @@ void UAlsCharacterMovementComponent::SetMaxAllowedGait(const FGameplayTag& NewMa
 
 void UAlsCharacterMovementComponent::RefreshMaxWalkSpeed()
 {
-	MaxWalkSpeed = GaitSettings.GetSpeedByGait(MaxAllowedGait);
+	MaxWalkSpeed = GaitSettings.GetSpeedByGait(MaxAllowedGait) * WalkSpeedModifierRatio;
 	MaxWalkSpeedCrouched = MaxWalkSpeed;
+	UKismetSystemLibrary::PrintString(this, FString::SanitizeFloat(MaxWalkSpeed));
 }
 
 float UAlsCharacterMovementComponent::CalculateGaitAmount() const
