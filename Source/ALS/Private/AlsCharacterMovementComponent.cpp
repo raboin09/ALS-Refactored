@@ -918,7 +918,6 @@ void UAlsCharacterMovementComponent::RefreshMaxWalkSpeed()
 {
 	MaxWalkSpeed = GaitSettings.GetSpeedByGait(MaxAllowedGait) * WalkSpeedModifierRatio;
 	MaxWalkSpeedCrouched = MaxWalkSpeed;
-	UKismetSystemLibrary::PrintString(this, FString::SanitizeFloat(MaxWalkSpeed));
 }
 
 float UAlsCharacterMovementComponent::CalculateGaitAmount() const
